@@ -1,11 +1,13 @@
-
+import AboutUs from "../homeComponents/about";
+import Volunteer from "./volunteer";
 
 const About = () => {
-    return (
-        <div>
-            about
-        </div>
-    );
+  return (
+    <div>
+      <AboutUs />
+      <Volunteer />
+    </div>
+  );
 };
 
 export default About;
