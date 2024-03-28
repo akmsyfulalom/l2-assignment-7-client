@@ -69,6 +69,13 @@ const dispatch = useAppDispatch()
                 <GalleryVerticalEnd />
                 All Supply
               </NavLink>
+              <NavLink
+                to="/dashboard/create-testimonial"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <GalleryVerticalEnd />
+                Create Testimonial
+              </NavLink>
             </nav>
           </div>
         </div>
@@ -116,6 +123,13 @@ const dispatch = useAppDispatch()
                 >
                   <GalleryVerticalEnd />
                   All Supply
+                </NavLink>
+                <NavLink
+                  to="/dashboard/create-testimonial"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                >
+                  <GalleryVerticalEnd />
+                  Create Testimonial
                 </NavLink>
               </nav>
             </SheetContent>

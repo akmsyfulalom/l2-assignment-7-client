@@ -15,6 +15,7 @@ import AboutUs from "@/pages/aboutUs/aboutUs";
 import LearderboardPage from "@/pages/leaderboard/learderboard";
 import CommunityPage from "@/pages/community/community";
 import VolunteerPage from "@/pages/volunteer/volunteer";
+import CreateTestimonial from "@/components/dashboard/createTestimonial";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/all-supply",
         element: <AllSupply />,
+      },
+      {
+        path: "/dashboard/create-testimonial",
+        element: <CreateTestimonial />,
       },
     ],
   },
