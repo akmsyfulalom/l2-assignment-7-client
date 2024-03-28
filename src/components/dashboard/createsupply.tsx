@@ -47,7 +47,7 @@ const Createsupply = () => {
 
       try {
         const response = await axios.post(
-          "https://l2-assignment-6-server-snowy.vercel.app/api/v1/upload",
+          "http://localhost:5000/api/v1/upload",
           formData,
           {
             headers: {
