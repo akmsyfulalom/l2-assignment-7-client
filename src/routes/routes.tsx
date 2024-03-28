@@ -11,6 +11,10 @@ import AllSupply from "@/components/dashboard/allSupplies";
 import ProtectedRoutes from "@/utils/protectedRoutes";
 import NotFound from "@/pages/notfound";
 import Detail from "@/pages/supplies/detail";
+import AboutUs from "@/pages/aboutUs/aboutUs";
+import LearderboardPage from "@/pages/leaderboard/learderboard";
+import CommunityPage from "@/pages/community/community";
+import VolunteerPage from "@/pages/volunteer/volunteer";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +28,22 @@ const router = createBrowserRouter([
       {
         path: "/supplies",
         element: <Supplies />,
+      },
+      {
+        path: "/about-us",
+        element: <AboutUs />,
+      },
+      {
+        path: "/leaderboard",
+        element: <LearderboardPage />,
+      },
+      {
+        path: "/community",
+        element: <CommunityPage />,
+      },
+      {
+        path: "/volunteer",
+        element: <VolunteerPage />,
       },
       {
         path: "/supply/:id",
@@ -61,7 +81,7 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
-  }
+  },
 ]);
 
 export default router;

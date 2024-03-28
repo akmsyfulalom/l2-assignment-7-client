@@ -9,7 +9,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { logout, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { CircleUser, Menu} from "lucide-react";
+import { CircleUser, Menu } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
@@ -29,7 +29,7 @@ const Navbar = () => {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <div>
-              <img  src="/DCHM.png" />
+              <img src="/DCHM.png" />
             </div>
           </NavLink>
           <NavLink
@@ -43,6 +43,31 @@ const Navbar = () => {
             className="text-muted-foreground transition-colors hover:text-foreground"
           >
             Supplies
+          </NavLink>
+          <NavLink
+            to="/about-us"
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/leaderboard"
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            Loaderboard
+          </NavLink>
+          <NavLink
+            to="/community"
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            Community
+          </NavLink>
+
+          <NavLink
+            to="/volunteer"
+            className="text-foreground transition-colors hover:text-foreground"
+          >
+            Volunteer
           </NavLink>
         </nav>
         <Sheet>
@@ -62,9 +87,9 @@ const Navbar = () => {
                 to="/"
                 className="flex items-center gap-2 text-lg font-semibold"
               >
-                 <div>
-              <img  src="/DCHM.png" />
-            </div>
+                <div>
+                  <img src="/DCHM.png" />
+                </div>
               </NavLink>
 
               <NavLink
@@ -77,7 +102,31 @@ const Navbar = () => {
                 to="/supplies"
                 className="text-muted-foreground transition-colors hover:text-foreground"
               >
-                 Supplies
+                Supplies
+              </NavLink>
+              <NavLink
+                to="/about-us"
+                className="text-foreground transition-colors hover:text-foreground"
+              >
+                About Us
+              </NavLink>
+              <NavLink
+                to="/leaderboard"
+                className="text-foreground transition-colors hover:text-foreground"
+              >
+                Leaderboard
+              </NavLink>
+              <NavLink
+                to="/community"
+                className="text-foreground transition-colors hover:text-foreground"
+              >
+                Community
+              </NavLink>
+              <NavLink
+                to="/volunteer"
+                className="text-foreground transition-colors hover:text-foreground"
+              >
+                Volunteer
               </NavLink>
             </nav>
           </SheetContent>
