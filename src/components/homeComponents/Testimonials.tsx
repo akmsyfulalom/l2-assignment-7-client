@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { motion } from 'framer-motion';
 import {
   Carousel,
   CarouselContent,
@@ -58,7 +59,11 @@ export function Testimonials() {
   ];
 
   return (
-    <div className="mt-28 mb-20">
+    <motion.div 
+    initial={{ y: 200 }}
+    whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+    viewport={{ once: true }}
+    className="mt-28 mb-20">
       <div className="flex flex-col items-center justify-center">
         <span>Testimonial</span>
         <h1 className="text-2xl font-bold lg:text-4xl text-center mt-3 mb-14">
@@ -92,6 +97,6 @@ export function Testimonials() {
           <CarouselNext />
         </Carousel>
       </div>
-    </div>
+    </motion.div>
   );
 }

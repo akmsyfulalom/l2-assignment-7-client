@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { useGetSixSupplyQuery } from "@/redux/features/supplier/supplierApi";
 import { NavLink } from "react-router-dom";
+import { motion } from 'framer-motion';
 
 const Cards = () => {
   const { data: suppliers, isLoading } = useGetSixSupplyQuery(undefined);
@@ -22,7 +23,13 @@ const Cards = () => {
   );
 }
   return (
-    <div>
+    
+    <motion.div
+    initial={{ y: 200 }}
+    whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+    viewport={{ once: true }}
+    
+    >
       <h2 className="text-2xl font-bold lg:text-4xl text-center my-20">
         Supply Posts
       </h2>
@@ -53,7 +60,7 @@ const Cards = () => {
           </NavLink>
         </Button>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -10,6 +10,8 @@ import {
 } from "../ui/table";
 import { useGetSupplierQuery } from "@/redux/features/supplier/supplierApi";
 import { CardTitle } from "../ui/card";
+import { motion } from 'framer-motion';
+import TransitionEffect from "@/utils/TransitionEffect";
 
 const Leaderboard = () => {
   const { data: suppliers, isLoading } = useGetSupplierQuery(undefined);
@@ -31,7 +33,13 @@ const Leaderboard = () => {
     );
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <>
+     <TransitionEffect />
+    <motion.div 
+    initial={{ y: 200 }}
+      whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+      viewport={{ once: true }}
+    className="max-w-6xl mx-auto">
       <CardTitle className="my-20 mx-[10px] lg:mx-[20px]">All Supply</CardTitle>
 
       <Table>
@@ -61,7 +69,8 @@ const Leaderboard = () => {
           ))}
         </TableBody>
       </Table>
-    </div>
+    </motion.div>
+          </>
   );
 };
 

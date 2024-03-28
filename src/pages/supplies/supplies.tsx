@@ -1,10 +1,12 @@
 import AllSuppliesCard from "@/components/supplies/supplies";
+import TransitionEffect from "@/utils/TransitionEffect";
 
 const Supplies = () => {
   return (
-    <div>
+    <>
+     <TransitionEffect />
       <AllSuppliesCard />
-    </div>
+    </>
   );
 };
 

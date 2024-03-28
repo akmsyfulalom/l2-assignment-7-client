@@ -1,11 +1,13 @@
 import About from "@/components/about/about";
+import TransitionEffect from "@/utils/TransitionEffect";
 
 const AboutUs = () => {
-    return (
-        <div>
-            <About />
-        </div>
-    );
+  return (
+    <>
+      <TransitionEffect />
+      <About />
+    </>
+  );
 };
 
 export default AboutUs;
