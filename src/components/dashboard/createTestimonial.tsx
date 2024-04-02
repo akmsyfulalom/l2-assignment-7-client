@@ -36,7 +36,7 @@ const CreateTestimonial = () => {
   const [postSupply] = usePostSupplyMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const {darkMode} = useAppSelector((store) => store.theme)
+  const { darkMode } = useAppSelector((store) => store.theme);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -49,7 +49,7 @@ const CreateTestimonial = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/upload",
+          "https://l2-assignment-7-server-eight.vercel.app/api/v1/upload",
           formData,
           {
             headers: {
@@ -179,7 +179,6 @@ const CreateTestimonial = () => {
                   <Label htmlFor="category">Categories</Label>
                   <select
                     {...register("category", { required: true })}
-                  
                     className={`flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ${
                       darkMode ? "bg-[#18191A] border-gray-600" : ""
                     }`}

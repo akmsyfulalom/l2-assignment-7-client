@@ -54,7 +54,7 @@ const Volunteer = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/upload",
+          "https://l2-assignment-7-server-eight.vercel.app/api/v1/upload",
           formData,
           {
             headers: {
@@ -128,7 +128,11 @@ const Volunteer = () => {
       >
         <main className="grid flex-1 gap-4 overflow-auto p-4">
           <div className="relative hidden flex-col items-start gap-8 md:flex">
-            <fieldset className={`rounded-lg border  p-4 w-full ${darkMode ? "border-gray-600":""}`}>
+            <fieldset
+              className={`rounded-lg border  p-4 w-full ${
+                darkMode ? "border-gray-600" : ""
+              }`}
+            >
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="grid items-start gap-6"

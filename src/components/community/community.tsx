@@ -28,7 +28,7 @@ const MovingImage = ({ title, img, link }: TCommunity) => {
     }
   }
 
-  function handleMouseLeave(event: any) {
+  function handleMouseLeave() {
     if (imageRef.current) {
       imageRef.current.style.display = "none";
       x.set(0);

@@ -25,7 +25,7 @@ const AboutUs = () => {
   };
 
   return (
-    <div className={`bg-slate-100  ${darkMode ? "bg-[#18191A] " : ""}`}>
+    <div className={`  ${darkMode ? "bg-[#18191A] " : ""}`}>
       <motion.div
         ref={view}
         className="py-20 overflow-hidden"

@@ -13,8 +13,6 @@ import { CardTitle } from "../ui/card";
 import { usePostCommunityMutation } from "@/redux/features/community/communityApi";
 import { useAppSelector } from "@/redux/hooks";
 
-
-
 const IMAGE_ERROR_MESSAGE = "Please provide the image URL.";
 const TITLE_ERROR_MESSAGE = "Title must be at least 2 characters.";
 
@@ -35,7 +33,7 @@ const CreateCommunityPost = () => {
   const [communityPost] = usePostCommunityMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
-  const {darkMode} = useAppSelector((store) => store.theme);
+  const { darkMode } = useAppSelector((store) => store.theme);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -48,7 +46,7 @@ const CreateCommunityPost = () => {
 
       try {
         const response = await axios.post(
-          "http://localhost:5000/api/v1/upload",
+          "https://l2-assignment-7-server-eight.vercel.app/api/v1/upload",
           formData,
           {
             headers: {
@@ -121,7 +119,6 @@ const CreateCommunityPost = () => {
                       type="file"
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       onChange={handleFileChange}
-
                     />
                     <div className="max-h-48 max-w-48 flex flex-col justify-center items-center gap-5">
                       {file && (
@@ -173,8 +170,7 @@ const CreateCommunityPost = () => {
                     <div className="text-red-500">{errors.title.message}</div>
                   )}
                 </div>
-                
-                
+
                 <div className="grid gap-3">
                   <Label htmlFor="description">Description</Label>
                   <Textarea
