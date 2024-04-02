@@ -11,6 +11,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { CardTitle } from "../ui/card";
 import { usePostCommunityMutation } from "@/redux/features/community/communityApi";
+import { useAppSelector } from "@/redux/hooks";
 
 
 
@@ -34,6 +35,7 @@ const CreateCommunityPost = () => {
   const [communityPost] = usePostCommunityMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const {darkMode} = useAppSelector((store) => store.theme);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -101,7 +103,7 @@ const CreateCommunityPost = () => {
       <CardTitle className="mb-10 mt-3">Create community post</CardTitle>
       <div className="flex flex-col">
         <main className="grid flex-1 gap-4 overflow-auto p-4">
-          <div className="relative hidden flex-col items-start gap-8 md:flex">
+          <div className="relative  flex-col items-start gap-8 md:flex">
             <fieldset className="rounded-lg border p-4 w-full">
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -119,6 +121,7 @@ const CreateCommunityPost = () => {
                       type="file"
                       className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                       onChange={handleFileChange}
+
                     />
                     <div className="max-h-48 max-w-48 flex flex-col justify-center items-center gap-5">
                       {file && (
@@ -162,6 +165,9 @@ const CreateCommunityPost = () => {
                     type="text"
                     placeholder="community post title"
                     {...register("title", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.title && (
                     <div className="text-red-500">{errors.title.message}</div>
@@ -175,6 +181,9 @@ const CreateCommunityPost = () => {
                     id="description"
                     placeholder="Description"
                     {...register("description")}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.description && (
                     <div className="text-red-500">

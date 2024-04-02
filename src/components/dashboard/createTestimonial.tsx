@@ -11,6 +11,7 @@ import axios from "axios";
 import { usePostSupplyMutation } from "@/redux/features/supplier/supplierApi";
 import { toast } from "sonner";
 import { CardTitle } from "../ui/card";
+import { useAppSelector } from "@/redux/hooks";
 
 const IMAGE_ERROR_MESSAGE = "Please provide the image URL.";
 const TITLE_ERROR_MESSAGE = "Title must be at least 2 characters.";
@@ -35,6 +36,7 @@ const CreateTestimonial = () => {
   const [postSupply] = usePostSupplyMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const {darkMode} = useAppSelector((store) => store.theme)
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -104,7 +106,7 @@ const CreateTestimonial = () => {
       <CardTitle className="mb-10 mt-3">Create Testimonial</CardTitle>
       <div className="flex flex-col">
         <main className="grid flex-1 gap-4 overflow-auto p-4">
-          <div className="relative hidden flex-col items-start gap-8 md:flex">
+          <div className="relative  flex-col items-start gap-8 md:flex">
             <fieldset className="rounded-lg border p-4 w-full">
               <form
                 onSubmit={handleSubmit(onSubmit)}
@@ -165,6 +167,9 @@ const CreateTestimonial = () => {
                     type="text"
                     placeholder="Testimonial title"
                     {...register("title", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.title && (
                     <div className="text-red-500">{errors.title.message}</div>
@@ -174,7 +179,10 @@ const CreateTestimonial = () => {
                   <Label htmlFor="category">Categories</Label>
                   <select
                     {...register("category", { required: true })}
-                    className="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1"
+                  
+                    className={`flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 ${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   >
                     <option value="">Select a category</option>
                     <option value="Medical Resource Distribution">
@@ -210,6 +218,9 @@ const CreateTestimonial = () => {
                     type="number"
                     placeholder="Supplier amount"
                     {...register("amount", { valueAsNumber: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.amount && (
                     <div className="text-red-500">{errors.amount.message}</div>
@@ -221,6 +232,9 @@ const CreateTestimonial = () => {
                     id="description"
                     placeholder="Description"
                     {...register("description")}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.description && (
                     <div className="text-red-500">

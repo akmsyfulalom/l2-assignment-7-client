@@ -65,7 +65,7 @@ const CommunityPost = ({ img, title, date, link }: TCommunity) => {
     >
       <div className="flex items-center justify-between  w-full">
         <MovingImage title={title} img={img} link={link} />
-        <span className="text-primary font-semibold pl-4 dark:text-primaryDark sm:self-start sm:pl-0 xs:text-sm">
+        <span className=" font-semibold pl-4 dark:text-light  sm:self-start sm:pl-0 xs:text-sm">
           {date}
         </span>
       </div>

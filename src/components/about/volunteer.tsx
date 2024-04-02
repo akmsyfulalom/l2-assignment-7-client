@@ -8,10 +8,11 @@ import {
   CardTitle,
 } from "../ui/card";
 import { useGetVolunteerQuery } from "@/redux/features/volunteer/volunteer";
+import { useAppSelector } from "@/redux/hooks";
 
 const Volunteer = () => {
   const { data: valunteers } = useGetVolunteerQuery(undefined);
-  console.log("🚀 ~ Volunteer ~ data:", valunteers);
+  const { darkMode } = useAppSelector((store) => store.theme);
   return (
     <div className="md:mx-20 mx-5 my-20">
       <div className="text-center my-10">
@@ -24,7 +25,12 @@ const Volunteer = () => {
       <div className="grid md:grid-cols-2 lg:grid-cols-4 md:gap-10 gap-10">
         {valunteers &&
           valunteers?.data?.map((valunteer: any, index: any) => (
-            <Card key={index}>
+            <Card
+              key={index}
+              className={`${
+                darkMode ? "bg-[#18191A] border-gray-600 text-white" : ""
+              }`}
+            >
               <CardHeader>
                 <CardTitle>{valunteer?.name}</CardTitle>
                 <CardDescription>{valunteer?.passion}</CardDescription>

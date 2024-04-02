@@ -4,7 +4,7 @@ import { HomeDashboard } from "@/components/dashboard/dashboardHome";
 
 const Dashboard = () => {
     return (
-        <div>
+        <div >
             <HomeDashboard />
         </div>
     );

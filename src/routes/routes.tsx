@@ -18,6 +18,7 @@ import VolunteerPage from "@/pages/volunteer/volunteer";
 import CreateTestimonial from "@/components/dashboard/createTestimonial";
 import DetailGratitude from "@/components/community/detailGratitude";
 import CreateCommunityPost from "@/components/dashboard/createCommunityPost";
+import DashboardChart from "@/components/dashboard/home";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
       </ProtectedRoutes>
     ),
     children: [
+      {
+        index: true, 
+        element: <DashboardChart />
+      }, 
       {
         path: "/dashboard/create-supply",
         element: <Createsupply />,

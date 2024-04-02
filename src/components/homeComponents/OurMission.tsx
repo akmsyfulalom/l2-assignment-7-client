@@ -65,10 +65,8 @@ const OurMission = () => {
           <motion.div variants={icons} initial="initial" animate="animate">
             <ShieldHalf size={100} />
           </motion.div>
-          <h2 className="text-primary dark:text-white text-2xl font-bold">
-            Empowerment Approach:
-          </h2>
-          <p className="text-slate-700 dark:text-slate-300">
+          <h2 className=" text-2xl font-bold">Empowerment Approach:</h2>
+          <p className="">
             Description: Empowering individuals or communities by providing them
             with the necessary resources, skills, and knowledge to solve their
             own problems and achieve their goals. This approach focuses on
@@ -84,10 +82,8 @@ const OurMission = () => {
           <motion.div variants={icons} initial="initial" animate="animate">
             <HandHelping size={100} />
           </motion.div>
-          <h2 className="text-primary dark:text-white text-2xl font-bold">
-            Collaborative Support:
-          </h2>
-          <p className="text-slate-700 dark:text-slate-300">
+          <h2 className=" text-2xl font-bold">Collaborative Support:</h2>
+          <p className="">
             Description: Collaborating with individuals, organizations, or
             communities to address challenges collectively. By pooling
             resources, expertise, and perspectives, collaborative support
@@ -101,10 +97,8 @@ const OurMission = () => {
             <motion.div variants={icons} initial="initial" animate="animate">
               <HeartHandshake size={100} />
             </motion.div>
-            <h2 className="text-primary dark:text-white text-2xl font-bold">
-              Holistic Assistance:
-            </h2>
-            <p className="text-slate-700 dark:text-slate-300">
+            <h2 className=" text-2xl font-bold">Holistic Assistance:</h2>
+            <p className="">
               Description: Providing comprehensive support that addresses
               various aspects of an individual's or community's needs, including
               physical, mental, social, and economic well-being. This approach

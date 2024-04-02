@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import {
   Carousel,
   CarouselContent,
@@ -9,11 +9,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-
+import { useAppSelector } from "@/redux/hooks";
 
 export function Testimonials() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
-
+  const { darkMode } = useAppSelector((store) => store.theme);
   // Function to handle auto-sliding
   const handleAutoSlide = () => {
     const newIndex = (currentIndex + 1) % 5; // Assuming 5 items in the carousel
@@ -59,31 +59,35 @@ export function Testimonials() {
   ];
 
   return (
-    <motion.div 
-    initial={{ y: 200 }}
-    whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-    viewport={{ once: true }}
-    className="mt-28 mb-20">
+    <motion.div
+      initial={{ y: 200 }}
+      whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+      viewport={{ once: true }}
+      className="mt-28 mb-20"
+    >
       <div className="flex flex-col items-center justify-center">
         <span>Testimonial</span>
         <h1 className="text-2xl font-bold lg:text-4xl text-center mt-3 mb-14">
-          Our Top 6 Provider
+          Our Top 6 Supplier
         </h1>
       </div>
 
       <div className="flex justify-center items-center mx-20">
-        <Carousel 
+        <Carousel
           opts={{
             align: "start",
           }}
           className="w-full "
-          
         >
           <CarouselContent>
             {data.map((item, index) => (
               <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                 <div className="p-1">
-                  <Card>
+                  <Card
+                    className={`${
+                      darkMode ? "bg-[#18191A] text-white border-gray-600" : ""
+                    }`}
+                  >
                     <CardContent className="flex flex-col aspect-square items-center justify-center p-6">
                       <p className="text-3xl font-semibold">{item?.title}</p>
                       <p> {item?.description}</p>
@@ -93,8 +97,8 @@ export function Testimonials() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className={`${darkMode ? " bg-[#18191A]" : ""}`} />
+          <CarouselNext className={`${darkMode ? " bg-[#18191A]" : ""}`} />
         </Carousel>
       </div>
     </motion.div>

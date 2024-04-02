@@ -12,6 +12,7 @@ import { motion } from "framer-motion";
 import AnimatedText from "@/utils/AnimatedText";
 import TransitionEffect from "@/utils/TransitionEffect";
 import { usePostVolunteerMutation } from "@/redux/features/volunteer/volunteer";
+import { useAppSelector } from "@/redux/hooks";
 
 const IMAGE_ERROR_MESSAGE = "Please provide the image URL.";
 const TITLE_ERROR_MESSAGE = "name must be at least 2 characters.";
@@ -40,6 +41,7 @@ const Volunteer = () => {
   const [postVolunteer] = usePostVolunteerMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
+  const { darkMode } = useAppSelector((store) => store.theme);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -126,7 +128,7 @@ const Volunteer = () => {
       >
         <main className="grid flex-1 gap-4 overflow-auto p-4">
           <div className="relative hidden flex-col items-start gap-8 md:flex">
-            <fieldset className="rounded-lg border p-4 w-full">
+            <fieldset className={`rounded-lg border  p-4 w-full ${darkMode ? "border-gray-600":""}`}>
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="grid items-start gap-6"
@@ -186,6 +188,9 @@ const Volunteer = () => {
                     type="text"
                     placeholder="full name"
                     {...register("name", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.name && (
                     <div className="text-red-500">{errors.name.message}</div>
@@ -198,6 +203,9 @@ const Volunteer = () => {
                     type="text"
                     placeholder="mobile"
                     {...register("mobile", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.mobile && (
                     <div className="text-red-500">{errors.mobile.message}</div>
@@ -210,6 +218,9 @@ const Volunteer = () => {
                     type="email"
                     placeholder="email"
                     {...register("email")}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.email && (
                     <div className="text-red-500">{errors.email.message}</div>
@@ -222,6 +233,9 @@ const Volunteer = () => {
                     type="text"
                     placeholder="location"
                     {...register("location", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.location && (
                     <div className="text-red-500">
@@ -236,6 +250,9 @@ const Volunteer = () => {
                     type="text"
                     placeholder="passion"
                     {...register("passion", { required: true })}
+                    className={`${
+                      darkMode ? "bg-[#18191A] border-gray-600" : ""
+                    }`}
                   />
                   {errors.passion && (
                     <div className="text-red-500">{errors.passion.message}</div>

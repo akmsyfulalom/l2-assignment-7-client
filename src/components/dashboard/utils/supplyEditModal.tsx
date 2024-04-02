@@ -18,6 +18,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 import { useUpdateSupplyMutation } from "@/redux/features/supplier/supplierApi";
+import { useAppSelector } from "@/redux/hooks";
 
 
 const TITLE_ERROR_MESSAGE = "Title must be at least 2 characters.";
@@ -34,7 +35,7 @@ type FormData = z.infer<typeof schema>;
 
 const SupplyEditModal = ({ supply }: { supply: any }) => {
   const [updateSupply, { isLoading }] = useUpdateSupplyMutation();
-
+  const { darkMode } = useAppSelector((store) => store.theme);
 
   const {
     register,
@@ -83,7 +84,7 @@ const SupplyEditModal = ({ supply }: { supply: any }) => {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="outline">
-          <Pencil />
+          <Pencil className={`${darkMode ? "text-black":""}`} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
@@ -93,7 +94,7 @@ const SupplyEditModal = ({ supply }: { supply: any }) => {
 
         <div className="flex flex-col">
           <main className="grid flex-1 gap-4 overflow-auto p-4">
-            <div className="relative hidden flex-col items-start gap-8 md:flex">
+            <div className="relative  flex-col items-start gap-8 md:flex">
               <fieldset className="rounded-lg border p-4 w-full">
                 
                   <form

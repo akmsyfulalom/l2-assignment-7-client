@@ -1,18 +1,20 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "react-router-dom";
+import { useAppSelector } from "@/redux/hooks";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
+  const { darkMode } = useAppSelector((store) => store.theme);
   return (
-    <div className="bg-zinc-900 dark:bg-zinc-100">
+    <div className="border-t-2">
       <div className="lg:grid lg:grid-cols-2 mx-20 items-center lg:gap-24 ">
         <div>
           <div>
-            <h1 className="text-4xl font-bold text-white">DCHM</h1>
+            <h1 className="text-4xl font-bold ">DCHM</h1>
           </div>
 
-          <p className="text-white">
+          <p className="">
             {" "}
             The Post-Disaster Community Health and Medical Supply Chain Platform
             is a robust system designed to ensure swift and efficient
@@ -24,21 +26,25 @@ export default function Footer() {
         </div>
         <section className="w-full py-6 md:py-8 lg:py-10 ">
           <div className="container px-4 md:px-6 flex flex-col items-center text-center">
-            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl/none text-white">
+            <h2 className="text-2xl font-bold tracking-tighter sm:text-3xl md:text-4xl lg:text-5xl/none ">
               Stay Connected
             </h2>
-            <p className="mx-auto max-w-[700px] text-zinc-100 md:text-lg dark:text-zinc-800">
+            <p className="mx-auto max-w-[700px]  md:text-lg ">
               Subscribe to our newsletter and follow us on our social media.
             </p>
             <div className="w-full max-w-md space-y-2 my-4">
               <form className="flex space-x-2">
                 <Input
-                  className="max-w-lg flex-1 text-zinc-900 bg-white"
+                  className={`max-w-lg flex-1   ${
+                    darkMode ? "bg-[#18191A] border-gray-600" : ""
+                  }`}
                   placeholder="Enter your email"
                   type="email"
                 />
                 <Button
-                  className="text-black border-white"
+                  className={`bg-gray-100 text-black ${
+                    darkMode ? "bg-gray-600 text-white" : ""
+                  }`}
                   type="submit"
                   variant="outline"
                 >

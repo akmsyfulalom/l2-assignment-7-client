@@ -31,10 +31,9 @@ export default function DetailGratitude() {
   const user = useAppSelector(selectCurrentUser);
   const { data: userData, isFetching } = useGetSingleUserQuery(user?.email);
   const [postComment] = usePostCommentMutation();
-  const { data: comments, isLoading: commentsLoading } =
-    useGetCommentQuery(id);
+  const { data: comments, isLoading: commentsLoading } = useGetCommentQuery(id);
   const { register, handleSubmit, reset } = useForm();
-
+  const { darkMode } = useAppSelector((store) => store.theme);
   const onSubmit = async (data: any) => {
     const toastId = toast.loading("Posting Comment...");
     const commentData = {
@@ -43,7 +42,7 @@ export default function DetailGratitude() {
       email: userData?.data?.email,
       comment: data.comment,
     };
-  
+
     try {
       await postComment(commentData).unwrap();
       toast.success("Comment Posted Successfully", {
@@ -79,7 +78,12 @@ export default function DetailGratitude() {
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink>
-                <Link to="/community" className="text-xl font-semibold">
+                <Link
+                  to="/community"
+                  className={`text-xl font-semibold ${
+                    darkMode ? "text-white" : ""
+                  }`}
+                >
                   Community
                 </Link>
               </BreadcrumbLink>
@@ -87,7 +91,12 @@ export default function DetailGratitude() {
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbLink>
-                <Link to="#" className="text-xl font-semibold text-black">
+                <Link
+                  to="#"
+                  className={`text-xl font-semibold ${
+                    darkMode ? "text-gray-400" : ""
+                  }`}
+                >
                   Gratitude Detail
                 </Link>
               </BreadcrumbLink>
@@ -99,37 +108,72 @@ export default function DetailGratitude() {
         <p>Loading...</p>
       ) : post ? (
         <div>
-          <div className="max-w-4xl px-10 py-6 mx-auto bg-gray-50 ">
+          <div className="max-w-4xl px-10 py-6 mx-auto ">
             <img
               src={post?.data?.image}
               className="object-cover w-full shadow-sm h-full"
               alt={post?.data?.title}
             />
           </div>
-          <Card className="mx-20 p-3 gap-5">
+          <Card
+            className={`mx-20 p-3 gap-5  ${
+              darkMode
+                ? "text-white bg-[#18191A] border-gray-600 shadow-md"
+                : ""
+            }`}
+          >
             <CardTitle className=" hover:underline">
               {post?.data?.title}
             </CardTitle>
             <CardDescription>
-              <p className="py-2">{post?.data?.createdAt}</p>
-              <p>Views: {views}</p>
+              <p className={`py-2 ${darkMode ? "text-gray-400" : ""}`}>
+                {post?.data?.createdAt}
+              </p>
+              <p className={`${darkMode ? "text-gray-400" : ""}`}>
+                Views: {views}
+              </p>
             </CardDescription>
             <CardContent className="mt-5">
               <p>{post?.data?.description}</p>
             </CardContent>
           </Card>
-          <Card className="mx-20 p-3 gap-5 mt-5">
-            <CardTitle className="text-center pb-5">Write a comment </CardTitle>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <Textarea
-                {...register("comment")}
-                placeholder="Type your comment here."
-              />
-              <Button className="mt-3">Submit comment</Button>
-            </form>
-          </Card>
+          {user?.email ? (
+            <Card
+              className={`mx-20 p-3 gap-5 mt-5 ${
+                darkMode ? "bg-[#18191A] text-white border-gray-600" : ""
+              }`}
+            >
+              <CardTitle className="text-center pb-5">
+                Write a Comment
+              </CardTitle>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <Textarea
+                  {...register("comment", { required: true })}
+                  placeholder="Type your comment here."
+                  className={`w-full p-3 border rounded focus:outline-none focus:ring focus:border-blue-300 ${
+                    darkMode ? "bg-[#18191A] border-gray-600" : ""
+                  }`}
+                />
+                <Button className="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:border-blue-300">
+                  Submit Comment
+                </Button>
+              </form>
+            </Card>
+          ) : (
+            <div
+              className={`mx-20 mt-5 p-3 border rounded bg-gray-100 ${
+                darkMode ? "bg-[#18191A] border-gray-600" : ""
+              }`}
+            >
+              <p className="text-center">Please login to comment!</p>
+            </div>
+          )}
 
-          <Card className="mx-20 p-3 gap-5 mt-5">
+          <Card
+            className={`mx-20 p-3 gap-5 mt-5  ${
+              darkMode ? "bg-[#18191A] text-white border-gray-600" : ""
+            }`}
+          >
             {commentsLoading ? (
               <div>Loading comments...</div>
             ) : comments && comments.data.length > 0 ? (
@@ -143,12 +187,22 @@ export default function DetailGratitude() {
                       />
                       <AvatarFallback>
                         {" "}
-                        <CircleUserRound />
+                        <CircleUserRound
+                          className={`${
+                            darkMode
+                              ? "text-white bg-[#18191A] rounded-full"
+                              : ""
+                          }`}
+                        />
                       </AvatarFallback>
                     </Avatar>
                     <div>
                       <CardTitle className="text-sm">{comment?.name}</CardTitle>
-                      <CardDescription>{comment?.time}</CardDescription>
+                      <CardDescription
+                        className={`${darkMode ? "text-gray-400" : ""}`}
+                      >
+                        {comment?.time}
+                      </CardDescription>
                       <CardTitle className="text-md">
                         {comment?.comment}
                       </CardTitle>
@@ -157,7 +211,7 @@ export default function DetailGratitude() {
                 </div>
               ))
             ) : (
-              <div>No comments yet.</div>
+              <p>No comments yet.</p>
             )}
           </Card>
         </div>
@@ -166,7 +220,14 @@ export default function DetailGratitude() {
       )}
       <div className="text-center mt-10 ">
         <Link to="/community">
-          <Button variant="secondary">Back to Community</Button>
+          <Button
+            variant="secondary"
+            className={`bg-gray-100 text-black ${
+              darkMode ? "bg-gray-600 text-white" : ""
+            }`}
+          >
+            Back to Community
+          </Button>
         </Link>
       </div>
     </div>
