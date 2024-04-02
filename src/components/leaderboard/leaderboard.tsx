@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 import {
   Table,
   TableBody,
@@ -9,9 +8,9 @@ import {
   TableRow,
 } from "../ui/table";
 import { useGetSupplierQuery } from "@/redux/features/supplier/supplierApi";
-import { CardTitle } from "../ui/card";
-import { motion } from 'framer-motion';
+import { motion } from "framer-motion";
 import TransitionEffect from "@/utils/TransitionEffect";
+import AnimatedText from "@/utils/AnimatedText";
 
 const Leaderboard = () => {
   const { data: suppliers, isLoading } = useGetSupplierQuery(undefined);
@@ -34,43 +33,50 @@ const Leaderboard = () => {
 
   return (
     <>
-     <TransitionEffect />
-    <motion.div 
-    initial={{ y: 200 }}
-      whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
-      viewport={{ once: true }}
-    className="max-w-6xl mx-auto">
-      <CardTitle className="my-20 mx-[10px] lg:mx-[20px]">All Supply</CardTitle>
+      <TransitionEffect />
 
-      <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="">Serial</TableHead>
-            <TableHead className="">Title</TableHead>
-            <TableHead>Category</TableHead>
-            <TableHead>Amount</TableHead>
-            <TableHead className="text-right">Attach</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {sortedSuppliers?.map((supply: any, index: any) => (
-            <TableRow key={supply?.index}>
-              <TableCell className="font-medium">{index + 1}</TableCell>
-              <TableCell className="font-medium">
-                {supply?.title?.substring(0, 20)}
-              </TableCell>
-              <TableCell>{supply?.category}</TableCell>
-              <TableCell>{supply?.amount}</TableCell>
+      <motion.div
+        initial={{ y: 200 }}
+        whileInView={{ y: 0, transition: { duration: 0.5, ease: "easeInOut" } }}
+        viewport={{ once: true }}
+        className="max-w-6xl mx-auto"
+      >
+        <div className="my-20">
+          <AnimatedText
+            text="Gratitude Corner: A Place for Appreciation"
+            className="mb-16 lg:!text4xl sm:mb-8 sm:!text-2xl  !text-2xl"
+          />
+        </div>
 
-              <TableCell className="text-right flex  justify-end">
-                <img className="max-w-[100px]" src={supply?.image} />
-              </TableCell>
+        <Table className="mb-20">
+          <TableHeader>
+            <TableRow>
+              <TableHead className="">Serial</TableHead>
+              <TableHead className="">Title</TableHead>
+              <TableHead>Category</TableHead>
+              <TableHead>Amount</TableHead>
+              <TableHead className="text-right">Attach</TableHead>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </motion.div>
-          </>
+          </TableHeader>
+          <TableBody>
+            {sortedSuppliers?.map((supply: any, index: any) => (
+              <TableRow key={supply?.index}>
+                <TableCell className="font-medium">{index + 1}</TableCell>
+                <TableCell className="font-medium">
+                  {supply?.title?.substring(0, 20)}
+                </TableCell>
+                <TableCell>{supply?.category}</TableCell>
+                <TableCell>{supply?.amount}</TableCell>
+
+                <TableCell className="text-right flex  justify-end">
+                  <img className="max-w-[100px]" src={supply?.image} />
+                </TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </motion.div>
+    </>
   );
 };
 

@@ -16,6 +16,8 @@ import LearderboardPage from "@/pages/leaderboard/learderboard";
 import CommunityPage from "@/pages/community/community";
 import VolunteerPage from "@/pages/volunteer/volunteer";
 import CreateTestimonial from "@/components/dashboard/createTestimonial";
+import DetailGratitude from "@/components/community/detailGratitude";
+import CreateCommunityPost from "@/components/dashboard/createCommunityPost";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/community",
         element: <CommunityPage />,
+      },
+      {
+        path: "/community/:id",
+        element: <DetailGratitude />,
       },
       {
         path: "/volunteer",
@@ -80,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/create-testimonial",
         element: <CreateTestimonial />,
+      },
+      {
+        path: "/dashboard/create-community-post",
+        element: <CreateCommunityPost />,
       },
     ],
   },

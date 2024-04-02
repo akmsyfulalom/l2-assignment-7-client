@@ -2,23 +2,20 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
 import { CloudUpload } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Label } from "../ui/label";
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
-import AnimatedText from "@/utils/AnimatedText";
-import TransitionEffect from "@/utils/TransitionEffect";
-import { usePostVolunteerMutation } from "@/redux/features/volunteer/volunteer";
+import { CardTitle } from "../ui/card";
+import { usePostCommunityMutation } from "@/redux/features/community/communityApi";
+
+
 
 const IMAGE_ERROR_MESSAGE = "Please provide the image URL.";
-const TITLE_ERROR_MESSAGE = "name must be at least 2 characters.";
-const MOBILE_ERROR_MESSAGE = "Mobile number must be a positive number.";
-const EMAIL_ERROR_MESSAGE = "Email Required.";
-const LOCATION_ERROR_MESSAGE = "Email Required.";
-const PASSION_ERROR_MESSAGE = "Email Required.";
+const TITLE_ERROR_MESSAGE = "Title must be at least 2 characters.";
 
 const schema = z.object({
   image: z
@@ -27,17 +24,14 @@ const schema = z.object({
       alt: z.string().nonempty({ message: IMAGE_ERROR_MESSAGE }),
     })
     .optional(),
-  name: z.string().min(2, { message: TITLE_ERROR_MESSAGE }),
-  mobile: z.string().min(11, { message: MOBILE_ERROR_MESSAGE }),
-  email: z.string().email({ message: EMAIL_ERROR_MESSAGE }),
-  location: z.string().min(1, { message: LOCATION_ERROR_MESSAGE }),
-  passion: z.string().min(1, { message: PASSION_ERROR_MESSAGE }),
+  title: z.string().min(2, { message: TITLE_ERROR_MESSAGE }),
+  description: z.string(),
 });
 
 type FormData = z.infer<typeof schema>;
 
-const Volunteer = () => {
-  const [postVolunteer] = usePostVolunteerMutation();
+const CreateCommunityPost = () => {
+  const [communityPost] = usePostCommunityMutation();
   const [imageUrl, setImageUrl] = useState("");
   const [file, setFile] = useState<File | null>(null);
 
@@ -77,20 +71,17 @@ const Volunteer = () => {
   });
 
   const onSubmit = async (data: FormData) => {
-    const toastId = toast.loading("Form submitting...");
+    const toastId = toast.loading("Creating community post...");
 
     try {
-      const supplierData = {
+      const communityData = {
         image: imageUrl,
-        name: data.name,
-        mobile: data?.mobile,
-        email: data.email,
-        passion: data.passion,
-        location: data.location,
+        title: data.title,
+        description: data.description,
       };
-      console.log(supplierData);
-      postVolunteer(supplierData).unwrap();
-      toast.success("Form submit Successfully", {
+      console.log(communityData);
+      communityPost(communityData).unwrap();
+      toast.success("Community Created Successfully", {
         id: toastId,
         duration: 1000,
       });
@@ -106,24 +97,9 @@ const Volunteer = () => {
   };
 
   return (
-    <>
-      <TransitionEffect />
-
-      <div className="text-center my-20">
-        <AnimatedText
-          text="Make a Difference: Sign Up to Volunteer Today!"
-          className="mb-16 lg:!text4xl sm:mb-8 sm:!text-2xl  !text-2xl"
-        />
-      </div>
-      <motion.div
-        initial={{ y: 200 }}
-        whileInView={{
-          y: 0,
-          transition: { duration: 0.5, ease: "easeInOut" },
-        }}
-        viewport={{ once: true }}
-        className="flex flex-col max-w-2xl mx-auto"
-      >
+    <div>
+      <CardTitle className="mb-10 mt-3">Create community post</CardTitle>
+      <div className="flex flex-col">
         <main className="grid flex-1 gap-4 overflow-auto p-4">
           <div className="relative hidden flex-col items-start gap-8 md:flex">
             <fieldset className="rounded-lg border p-4 w-full">
@@ -180,65 +156,30 @@ const Volunteer = () => {
                   )}
                 </div>
                 <div className="grid gap-3">
-                  <Label htmlFor="title">Full Name</Label>
+                  <Label htmlFor="title">Title</Label>
                   <Input
-                    id="name"
+                    id="title"
                     type="text"
-                    placeholder="full name"
-                    {...register("name", { required: true })}
+                    placeholder="community post title"
+                    {...register("title", { required: true })}
                   />
-                  {errors.name && (
-                    <div className="text-red-500">{errors.name.message}</div>
+                  {errors.title && (
+                    <div className="text-red-500">{errors.title.message}</div>
                   )}
                 </div>
+                
+                
                 <div className="grid gap-3">
-                  <Label htmlFor="mobile">Mobile</Label>
-                  <Input
-                    id="mobile"
-                    type="text"
-                    placeholder="mobile"
-                    {...register("mobile", { required: true })}
+                  <Label htmlFor="description">Description</Label>
+                  <Textarea
+                    id="description"
+                    placeholder="Description"
+                    {...register("description")}
                   />
-                  {errors.mobile && (
-                    <div className="text-red-500">{errors.mobile.message}</div>
-                  )}
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="email"
-                    {...register("email")}
-                  />
-                  {errors.email && (
-                    <div className="text-red-500">{errors.email.message}</div>
-                  )}
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="location">Location</Label>
-                  <Input
-                    id="location"
-                    type="text"
-                    placeholder="location"
-                    {...register("location", { required: true })}
-                  />
-                  {errors.location && (
+                  {errors.description && (
                     <div className="text-red-500">
-                      {errors.location.message}
+                      {errors.description.message}
                     </div>
-                  )}
-                </div>
-                <div className="grid gap-3">
-                  <Label htmlFor="location">Passion Tagline</Label>
-                  <Input
-                    id="passion "
-                    type="text"
-                    placeholder="passion"
-                    {...register("passion", { required: true })}
-                  />
-                  {errors.passion && (
-                    <div className="text-red-500">{errors.passion.message}</div>
                   )}
                 </div>
 
@@ -247,9 +188,9 @@ const Volunteer = () => {
             </fieldset>
           </div>
         </main>
-      </motion.div>
-    </>
+      </div>
+    </div>
   );
 };
 
-export default Volunteer;
+export default CreateCommunityPost;

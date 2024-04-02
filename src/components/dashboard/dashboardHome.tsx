@@ -3,10 +3,11 @@ import {
   CircleUser,
   Home,
   Menu,
-
   Search,
   SquareDashedKanban,
   GalleryVerticalEnd,
+  Handshake,
+  BookHeart,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -21,16 +22,11 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAppDispatch } from "@/redux/hooks";
 import { logout } from "@/redux/features/auth/authSlice";
 
-
-
 export function HomeDashboard() {
-const dispatch = useAppDispatch()
-
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-  
     dispatch(logout());
-   
   };
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
@@ -41,9 +37,9 @@ const dispatch = useAppDispatch()
               to="/dashboard"
               className="flex items-center gap-2 font-semibold"
             >
-               <div>
-              <img  src="/public/DCHM.png" />
-            </div>
+              <div>
+                <img src="/public/DCHM.png" />
+              </div>
             </NavLink>
           </div>
           <div className="flex-1">
@@ -73,8 +69,15 @@ const dispatch = useAppDispatch()
                 to="/dashboard/create-testimonial"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
-                <GalleryVerticalEnd />
+                <BookHeart />
                 Create Testimonial
+              </NavLink>
+              <NavLink
+                to="/dashboard/create-community-post"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+                <Handshake />
+                Community
               </NavLink>
             </nav>
           </div>
@@ -99,9 +102,9 @@ const dispatch = useAppDispatch()
                   to="/dashboard"
                   className="flex items-center gap-2 text-lg font-semibold"
                 >
-                   <div>
-              <img  src="/public/DCHM.png" />
-            </div>
+                  <div>
+                    <img src="/public/DCHM.png" />
+                  </div>
                 </NavLink>
                 <NavLink
                   to="/dashboard"
@@ -128,8 +131,15 @@ const dispatch = useAppDispatch()
                   to="/dashboard/create-testimonial"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
                 >
-                  <GalleryVerticalEnd />
+                  <BookHeart />
                   Create Testimonial
+                </NavLink>
+                <NavLink
+                  to="/dashboard/create-community-post"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+                >
+                  <Handshake />
+                  Community
                 </NavLink>
               </nav>
             </SheetContent>

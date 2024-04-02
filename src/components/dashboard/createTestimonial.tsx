@@ -1,4 +1,3 @@
-
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { Button } from "../ui/button";
@@ -48,7 +47,7 @@ const CreateTestimonial = () => {
 
       try {
         const response = await axios.post(
-          "https://l2-assignment-6-server-snowy.vercel.app/api/v1/upload",
+          "http://localhost:5000/api/v1/upload",
           formData,
           {
             headers: {
@@ -194,7 +193,7 @@ const CreateTestimonial = () => {
                       Psychosocial Support Services
                     </option>
                     <option value="Capacity Building and Resilience Building">
-                    Capacity Building and Resilience Building
+                      Capacity Building and Resilience Building
                     </option>
                   </select>
 

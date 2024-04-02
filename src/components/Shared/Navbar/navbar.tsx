@@ -46,9 +46,9 @@ const Navbar = () => {
           </NavLink>
           <NavLink
             to="/about-us"
-            className="text-foreground transition-colors hover:text-foreground"
+            className=" text-foreground transition-colors hover:text-foreground"
           >
-            About Us
+            About
           </NavLink>
           <NavLink
             to="/leaderboard"
