@@ -127,7 +127,7 @@ const Volunteer = () => {
         className="flex flex-col max-w-2xl mx-auto"
       >
         <main className="grid flex-1 gap-4 overflow-auto p-4">
-          <div className="relative hidden flex-col items-start gap-8 md:flex">
+          <div className="relative  flex-col items-start gap-8 md:flex">
             <fieldset
               className={`rounded-lg border  p-4 w-full ${
                 darkMode ? "border-gray-600" : ""

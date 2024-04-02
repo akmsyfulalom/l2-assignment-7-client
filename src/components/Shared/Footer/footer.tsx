@@ -8,7 +8,7 @@ export default function Footer() {
   const { darkMode } = useAppSelector((store) => store.theme);
   return (
     <div className="border-t-2">
-      <div className="lg:grid lg:grid-cols-2 mx-20 items-center lg:gap-24 ">
+      <div className="lg:grid lg:grid-cols-2 mx-3 md:mx-20 items-center lg:gap-24 ">
         <div>
           <div>
             <h1 className="text-4xl font-bold ">DCHM</h1>

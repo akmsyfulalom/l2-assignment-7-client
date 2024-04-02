@@ -8,13 +8,12 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
-
 const Gallery = () => {
   const view = useRef<HTMLDivElement>(null);
   const inView = useInView(view);
 
   return (
-    <div className="py-20  ">
+    <div className="py-20 mx-3 md:mx-20 ">
       <div className="text-center mb-20">
         <span className="">
           Photos of health and medical supplies donations and humanitarian works

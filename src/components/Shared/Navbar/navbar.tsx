@@ -40,7 +40,7 @@ const Navbar = () => {
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <div>
-              <img src="/DCHM.png" />
+              <img src="/DCHM.png" className="shrink-0" />
             </div>
           </NavLink>
           <NavLink to="/" className="transition-colors hover:text-gray-300 ">
@@ -83,7 +83,7 @@ const Navbar = () => {
             <Button
               variant="outline"
               size="icon"
-              className="shrink-0 md:hidden"
+              className={`shrink-0 md:hidden ${darkMode ? "text-black" : ""}`}
             >
               <Menu className="h-5 w-5" />
               <span className="sr-only">Toggle navigation menu</span>
@@ -96,7 +96,13 @@ const Navbar = () => {
                 className="flex items-center gap-2 text-lg font-semibold"
               >
                 <div>
-                  <img src="/DCHM.png" />
+                <h1
+                  className={`text-2xl md:text-4xl font-bold ${
+                    darkMode ? "text-black" : ""
+                  }`}
+                >
+                  DCHM
+                </h1>
                 </div>
               </NavLink>
 
@@ -170,7 +176,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button variant="outline" className="">
+            <Button variant="outline" className={`${darkMode ? "text-black":""}`}>
               <NavLink to="/login">Login</NavLink>
               <span className="sr-only">Toggle user menu</span>
             </Button>

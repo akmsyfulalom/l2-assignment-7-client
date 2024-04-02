@@ -66,8 +66,8 @@ export default function DetailGratitude() {
   };
   if (isFetching) {
     return (
-      <div className="h-fit">
-        <p className="text-center">Feching data...</p>
+      <div className="h-fit flex justify-center items-center">
+        <p>Feching data...</p>
       </div>
     );
   }
@@ -116,7 +116,7 @@ export default function DetailGratitude() {
             />
           </div>
           <Card
-            className={`mx-20 p-3 gap-5  ${
+            className={`mx-3 md:mx-20 p-3 gap-5  ${
               darkMode
                 ? "text-white bg-[#18191A] border-gray-600 shadow-md"
                 : ""
@@ -139,7 +139,7 @@ export default function DetailGratitude() {
           </Card>
           {user?.email ? (
             <Card
-              className={`mx-20 p-3 gap-5 mt-5 ${
+              className={`mx-3 md:mx-20 p-3 gap-5 mt-5 ${
                 darkMode ? "bg-[#18191A] text-white border-gray-600" : ""
               }`}
             >
@@ -161,8 +161,8 @@ export default function DetailGratitude() {
             </Card>
           ) : (
             <div
-              className={`mx-20 mt-5 p-3 border rounded bg-gray-100 ${
-                darkMode ? "bg-[#18191A] border-gray-600" : ""
+              className={`mx-3 md:mx-20 mt-5 p-3 border rounded  ${
+                darkMode ? "bg-[#18191A] border-gray-600 " : ""
               }`}
             >
               <p className="text-center">Please login to comment!</p>
@@ -170,7 +170,7 @@ export default function DetailGratitude() {
           )}
 
           <Card
-            className={`mx-20 p-3 gap-5 mt-5  ${
+            className={`mx-3 md:mx-20 p-3 gap-5 mt-5  ${
               darkMode ? "bg-[#18191A] text-white border-gray-600" : ""
             }`}
           >
@@ -216,7 +216,7 @@ export default function DetailGratitude() {
           </Card>
         </div>
       ) : (
-        <p>No data found for this post.</p>
+        <p className="text-center py-5">No data found for this post.</p>
       )}
       <div className="text-center mt-10 ">
         <Link to="/community">

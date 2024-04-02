@@ -72,7 +72,7 @@ export function Testimonials() {
         </h1>
       </div>
 
-      <div className="flex justify-center items-center mx-20">
+      <div className="flex justify-center items-center mx-3 md:mx-20">
         <Carousel
           opts={{
             align: "start",
